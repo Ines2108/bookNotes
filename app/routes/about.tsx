@@ -1,10 +1,10 @@
 export default function About() {
   return (
     <main className="mx-auto mt-28 max-w-md">
-      <h1>Über bookNotes</h1>
-      <p className="mt-4">Willkommen bei bookNotes! Hier kannst du ganz einfach deine Leseabenteuer organisieren und verfolgen.</p>
-        <h2 className="mt-4">Was ist bookNotes?</h2>
-        <p className="mt-4">Mit bookNotes behältst du den Überblick über die Bücher, die du gelesen hast, und die Bücher, die du noch lesen möchtest. Speichere deine gelesenen Bücher und füge Notizen, Bewertungen und Zitate hinzu. Erstelle eine Wunschliste für die Bücher, die du als nächstes lesen willst.</p>
+      <h1>About BookNotes</h1>
+      <p className="mt-4">Welcome to bookNotes! Here you can easily organize and track your reading adventures.</p>
+        <h2 className="mt-4">What's BookNotes?</h2>
+        <p className="mt-4">With bookNotes, you can keep track of the books you've read and the books you still want to read. Save the books you've read and add notes, ratings and quotes. Create a wish list for the books you want to read next.</p>
     </main>
   );
 }

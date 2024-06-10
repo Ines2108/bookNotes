@@ -14,7 +14,7 @@ export default function Library() {
 
     return (
         <>
-            <h1>Library</h1>
+            <h1>Book Library</h1>
             <p className="text-muted-foreground text-sm">Your Books. Your library.</p>
 
             <BookCardList books={books}></BookCardList>
