@@ -26,7 +26,7 @@ export async function fetchBooks() {
 }
 
 // Funktion zum Abrufen eines Buchs anhand der ID
-export async function fetchBookById(bookId) {
+export async function fetchBookById(bookId: string) {
   const response = await fetch(`https://book-api-gold.vercel.app/api/books/${bookId}`);
   const book = await response.json();
 
