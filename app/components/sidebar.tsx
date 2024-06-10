@@ -1,5 +1,16 @@
-import { Home, LayoutGrid, ListMusic } from 'lucide-react';
+import {
+  BookHeadphones,
+  BookMarked,
+  BookOpen,
+  BookOpenIcon,
+  FileArchive,
+  FileText,
+  Home,
+  LayoutGrid,
+  ListMusic
+} from 'lucide-react';
 import { Link } from '@remix-run/react';
+import Bookshelf from "~/routes/app.bookshelf";
 
 export function Sidebar() {
   return (
@@ -13,13 +24,13 @@ export function Sidebar() {
             Book Library
           </Link>
 
-          <Link to="/app/library" className="sidebar_link">
-            <LayoutGrid />
+          <Link to="/app/bookshelf" className="sidebar_link">
+            <BookOpen />
             Personal Bookshelf
           </Link>
 
-          <Link to="/app/playlists" className="sidebar_link">
-            <ListMusic />
+          <Link to="/app/readBooks" className="sidebar_link">
+            <BookMarked />
             Read Books
           </Link>
         </div>
