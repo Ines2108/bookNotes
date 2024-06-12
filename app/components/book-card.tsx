@@ -1,16 +1,17 @@
 // book-card.tsx
 import { Heart, HeartOff } from 'lucide-react';
 import { Book } from '~/models/book';
-import { useDispatch } from 'react-redux';
 import { favAction, notFavAction } from '~/store.client/favorite-reducer';
 import { useAppDispatch, useAppSelector } from '~/store.client/store';
+import {Link} from "@remix-run/react";
+
 
 type BookCardProps = { book: Book };
 
 export function BookCard({ book }: BookCardProps) {
     const dispatch = useAppDispatch();
-    const favoriteBooks = useAppSelector((state) => state.favorite.favoriteBooks); // Holen der Liste der favorisierten Bücher
-    const isFavorite = favoriteBooks.some(favoriteBook => favoriteBook.id === book.id); // Überprüfen, ob das Buch als favorisiert markiert ist
+    const favoriteBooks = useAppSelector((state) => state.favorite.favoriteBooks);
+    const isFavorite = favoriteBooks.some(favoriteBook => favoriteBook.id === book.id);
 
     const onFavoriteButtonClicked = () => {
         if (isFavorite) {
@@ -22,9 +23,11 @@ export function BookCard({ book }: BookCardProps) {
 
     return (
         <section className="card">
-            <div className="card_cover">
-                <img alt={'Cover image of ' + book.title} src={book.coverUrl} className="card_cover-img" />
-            </div>
+            <Link to={`/app/books/${book.id}`} className="card_link">
+                <div className="card_cover">
+                    <img alt={'Cover image of ' + book.title} src={book.coverUrl} className="card_cover-img" />
+                </div>
+            </Link>
 
             <div className="card_body">
                 <div className="flex-none">
