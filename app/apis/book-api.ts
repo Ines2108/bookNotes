@@ -2,7 +2,7 @@ import { z } from 'zod';
 
 // Schema für ein Buch
 const bookSchema = z.object({
-  id: z.number(),
+  id: z.string(),
   title: z.string(),
   author: z.string(),
   coverUrl: z.string().url(),
@@ -26,13 +26,19 @@ export async function fetchBooks() {
 }
 
 // Funktion zum Abrufen eines Buchs anhand der ID
-export async function fetchBookById(bookId: number) {
-  const response = await fetch(`https://book-api-gold.vercel.app/api/books/${bookId}`);
+export async function fetchBookById(bookId: string) {
+  const response = await fetch(`https://book-api-gold.vercel.app/api/books/`);
   if (!response.ok) {
-    throw new Error('Failed to fetch book');
+    throw new Error('Failed to fetch books');
   }
 
-  const book = await response.json();
+  const books = await response.json();
+  const book = books.find((book: { id: string }) => book.id === bookId);
+
+  if (!book) {
+    throw new Error(`Book with ID ${bookId} not found`);
+  }
+
   const parsedBook = bookDetailSchema.parse(book);
   return parsedBook;
 }
