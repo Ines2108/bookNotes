@@ -8,7 +8,7 @@ type FavoriteState = {
 };
 
 export const favAction = createAction<{ book: Book }>('favorites/fav');
-export const notFavAction = createAction<{ bookId: number }>('favorites/notFav');
+export const notFavAction = createAction<{ bookId: string }>('favorites/notFav');
 
 const initialState = {
     favoriteBooks: [],
@@ -19,8 +19,9 @@ const favoriteReducer = createReducer(initialState, (builder) => {
         state.favoriteBooks.push(action.payload.book); // Füge das Buch zur Liste der favorisierten Bücher hinzu
     });
     builder.addCase(notFavAction, (state, action) => {
-        state.favoriteBooks = state.favoriteBooks.filter(book => book.id !== action.payload.bookId); // Entferne das Buch aus der Liste der favorisierten Bücher
+        state.favoriteBooks = state.favoriteBooks.filter(book => book.id.toString() !== action.payload.bookId);
     });
+
 });
 
 export default favoriteReducer;

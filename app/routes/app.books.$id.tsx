@@ -14,8 +14,7 @@ export default function BookDetailPage() {
 
     useEffect(() => {
         if (id) {
-            const bookId = parseInt(id, 10); // ID in Zahl umwandeln
-            fetchBookById(bookId).then((book) => {
+            fetchBookById(id).then((book) => {
                 setBookDetails(book);
                 setLoading(false);
             }).catch((error) => {
