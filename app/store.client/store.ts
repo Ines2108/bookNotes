@@ -1,9 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { useDispatch, useSelector } from 'react-redux';
+import favoriteReducer from "~/store.client/favorite-reducer";
 
 export const store = configureStore({
   reducer: {
-    // TODO add your slices here
+    favorite: favoriteReducer
   },
 });
 
