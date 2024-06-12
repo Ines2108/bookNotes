@@ -1,12 +1,13 @@
 // favorite-reducer.tsx
 import { createAction, createReducer } from '@reduxjs/toolkit';
+import { Book } from '~/models/book'; // Annahme: Das Book-Modell wurde definiert
 
 type BookState = 'fav' | 'notFav';
 type FavoriteState = {
-    favoriteBooks: number[]; // Liste der favorisierten Buch-IDs
+    favoriteBooks: Book[]; // Liste der favorisierten Bücher
 };
 
-export const favAction = createAction<{ bookId: number }>('favorites/fav');
+export const favAction = createAction<{ book: Book }>('favorites/fav');
 export const notFavAction = createAction<{ bookId: number }>('favorites/notFav');
 
 const initialState = {
@@ -15,10 +16,10 @@ const initialState = {
 
 const favoriteReducer = createReducer(initialState, (builder) => {
     builder.addCase(favAction, (state, action) => {
-        state.favoriteBooks.push(action.payload.bookId); // Füge die Buch-ID zur Liste der favorisierten Bücher hinzu
+        state.favoriteBooks.push(action.payload.book); // Füge das Buch zur Liste der favorisierten Bücher hinzu
     });
     builder.addCase(notFavAction, (state, action) => {
-        state.favoriteBooks = state.favoriteBooks.filter(bookId => bookId !== action.payload.bookId); // Entferne die Buch-ID aus der Liste der favorisierten Bücher
+        state.favoriteBooks = state.favoriteBooks.filter(book => book.id !== action.payload.bookId); // Entferne das Buch aus der Liste der favorisierten Bücher
     });
 });
 

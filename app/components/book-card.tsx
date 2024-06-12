@@ -1,7 +1,7 @@
 // book-card.tsx
 import { Heart, HeartOff } from 'lucide-react';
 import { Book } from '~/models/book';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { favAction, notFavAction } from '~/store.client/favorite-reducer';
 import { useAppDispatch, useAppSelector } from '~/store.client/store';
 
@@ -10,13 +10,13 @@ type BookCardProps = { book: Book };
 export function BookCard({ book }: BookCardProps) {
     const dispatch = useAppDispatch();
     const favoriteBooks = useAppSelector((state) => state.favorite.favoriteBooks); // Holen der Liste der favorisierten Bücher
-    const isFavorite = favoriteBooks.includes(book.id); // Überprüfen, ob das Buch als favorisiert markiert ist
+    const isFavorite = favoriteBooks.some(favoriteBook => favoriteBook.id === book.id); // Überprüfen, ob das Buch als favorisiert markiert ist
 
     const onFavoriteButtonClicked = () => {
         if (isFavorite) {
             dispatch(notFavAction({ bookId: book.id }));
         } else {
-            dispatch(favAction({ bookId: book.id }));
+            dispatch(favAction({ book: book }));
         }
     };
 
