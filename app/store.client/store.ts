@@ -1,10 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { useDispatch, useSelector } from 'react-redux';
 import favoriteReducer from "~/store.client/favorite-reducer";
+import readReducer from "~/store.client/read-reducer";
 
 export const store = configureStore({
   reducer: {
-    favorite: favoriteReducer
+    favorite: favoriteReducer,
+    read: readReducer
   },
 });
 

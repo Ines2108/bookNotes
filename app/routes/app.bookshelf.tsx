@@ -11,7 +11,7 @@ export default function Bookshelf() {
     return (
         <>
             <h1>Personal Bookshelf</h1>
-            <p className="text-muted-foreground text-sm">Your shelf. Your books.</p>
+            <p className="text-muted-foreground text-sm">All the books you want to read</p>
 
             <div className="mt-5">
                 <BookCardList books={favoriteBooks}></BookCardList> {/* Übergeben der Liste der favorisierten Bücher an die BookCardList */}
