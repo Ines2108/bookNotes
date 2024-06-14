@@ -18,20 +18,12 @@ export function BookCard({ book }: BookCardProps) {
     const isRead = readBooks.some(readBook => readBook.id === book.id);
 
     const onFavoriteButtonClicked = () => {
-        if (isFavorite) {
-            dispatch(notFavAction({ bookId: book.id }));
-        } else {
-            dispatch(favAction({ book: book }));
-        }
+        dispatch(isFavorite ? notFavAction({ bookId: book.id }) : favAction({ book }));
     };
 
     // Mark books as read
     const onReadButtonClicked = () => {
-        if (isRead) {
-            dispatch(notReadAction({ bookId: book.id }));
-        } else {
-            dispatch(readAction({ book: book }));
-        }
+        dispatch(isRead ? notReadAction({ bookId: book.id }) : readAction({ book }));
     };
 
     return (
@@ -43,10 +35,14 @@ export function BookCard({ book }: BookCardProps) {
             </Link>
 
             <div className="card_body">
-                <div className="flex-none">
-                    <FavoriteButton isFavorite={isFavorite} onClick={onFavoriteButtonClicked}></FavoriteButton>
-                </div>
 
+                {/*readButton is only shown when Book has state fav*/}
+                {!isRead && (
+                    <FavoriteButton isFavorite={isFavorite} onClick={onFavoriteButtonClicked} />
+                )}
+
+
+                {/*readButton is not shown when Book has state read*/}
                 {isFavorite && (
                     <div className="flex-none">
                         <ReadButton isRead={isRead} onClick={onReadButtonClicked}></ReadButton>
