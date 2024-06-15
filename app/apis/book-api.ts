@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import {Book, Comment} from "~/models/book";
 
 // Schema für ein Buch
 const bookSchema = z.object({
@@ -7,7 +8,11 @@ const bookSchema = z.object({
   author: z.string(),
   coverUrl: z.string().url(),
   starRating: z.number().min(1).max(5),
-  ratingComment: z.string(),
+  comments: z.array(z.object({
+    commentId: z.string(),
+    text: z.string(),
+    createdAt: z.string()
+  })),
 });
 
 // Schema für detaillierte Buchdaten (ohne zusätzliche Felder in diesem Fall)
@@ -26,8 +31,8 @@ export async function fetchBooks() {
 }
 
 // Funktion zum Abrufen eines Buchs anhand der ID
-export async function fetchBookById(bookId: string) {
-  const response = await fetch(`https://book-api-gold.vercel.app/api/books/`);
+export async function fetchBookById(bookId: string): Promise<Book> {
+  const response = await fetch('https://book-api-gold.vercel.app/api/books');
   if (!response.ok) {
     throw new Error('Failed to fetch books');
   }
@@ -40,5 +45,20 @@ export async function fetchBookById(bookId: string) {
   }
 
   const parsedBook = bookDetailSchema.parse(book);
-  return parsedBook;
+
+  // Anpassen der Datenstruktur, um dem Book-Typ zu entsprechen
+  const formattedBook: Book = {
+    id: parsedBook.id,
+    title: parsedBook.title,
+    author: parsedBook.author,
+    coverUrl: parsedBook.coverUrl,
+    starRating: parsedBook.starRating,
+    comments: parsedBook.comments.map((comment: any) => ({
+      commentId: comment.commentId,
+      text: comment.text,
+      createdAt: comment.createdAt,
+    })),
+  };
+
+  return formattedBook;
 }

@@ -1,9 +1,14 @@
-export type Book =
-    {
+export type Book = {
     id: string;
     title: string;
     author: string;
     coverUrl: string;
     starRating: number;
-    ratingComment: string;
-}
+    comments: Comment[];
+};
+
+export type Comment = {
+    commentId: string;
+    text: string;
+    createdAt: string;
+};
