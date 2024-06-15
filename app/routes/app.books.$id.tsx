@@ -4,6 +4,8 @@ import { useEffect, useState } from 'react';
 import { useParams, Link } from '@remix-run/react';
 import { fetchBookById } from '~/apis/book-api';
 import { Book, Comment } from '~/models/book';
+import { addCommentToBook } from '~/storage.server/book-storage';
+import { RootState } from '~/store.client/store';
 
 export default function BookDetailPage() {
     const { id } = useParams<{ id: string }>();
