@@ -1,6 +1,6 @@
 export default function About() {
   return (
-    <main className="mx-auto mt-28 max-w-md">
+    <main className="mx-auto mt-10 max-w-lg">
       <h1>About BookNotes</h1>
       <p className="mt-4">Welcome to bookNotes! Here you can easily organize and track your reading adventures.</p>
         <h2 className="mt-4">What's BookNotes?</h2>

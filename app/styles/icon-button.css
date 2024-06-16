@@ -1,18 +1,16 @@
 .icon-button {
   display: grid;
-  width: 2.25rem;
+  width: 3rem;
   aspect-ratio: 1/1;
   border-radius: 9999px;
-  background-color: hsl(var(--accent));
+  background-color: #D3D9E9;
   color: hsl(var(--accent-foreground));
-  padding: 0.5rem;
   place-content: center;
   transition: all cubic-bezier(0.4, 0, 0.2, 1) 300ms;
 
   &:hover {
     transition: all 50ms;
-    /* background-color: #047857; */
-    background-color: hsl(var(--primary));
+    background-color: #98A5C8;
     color: #fff;
   }
 
