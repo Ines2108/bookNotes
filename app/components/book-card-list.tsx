@@ -7,12 +7,14 @@ type BookCardListProps = {
 
 export function BookCardList({ books }: BookCardListProps) {
     return (
-        <ul className="card-list">
-            {books.map((book) => (
-                <li key={book.id}>
-                    <BookCard book={book}></BookCard>
-                </li>
-            ))}
-        </ul>
+        <>
+            <ul className="card-list">
+                {books.map((book) => (
+                    <li key={book.id}>
+                        <BookCard book={book}></BookCard>
+                    </li>
+                ))}
+            </ul>
+        </>
     );
 }

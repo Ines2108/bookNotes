@@ -25,13 +25,14 @@ export async function action({ request }: ActionFunctionArgs) {
 }
 
 export default function AppLayout() {
+
     return (
         <div className="app-layout">
-            <Sidebar></Sidebar>
+            <Sidebar />
 
             <div className="app-layout_content">
                 <main>
-                    <Outlet></Outlet>
+                    <Outlet />
                 </main>
             </div>
         </div>

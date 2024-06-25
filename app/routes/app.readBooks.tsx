@@ -10,7 +10,7 @@ export default function ReadBooks() {
             <p className="text-muted-foreground text-sm">Your personal shelf filled with the books you've read and loved. Enjoy revisiting your favorite stories anytime!</p>
 
             <div className="mt-5">
-                // Transferring the list of books read to the BookCardList
+                {/*// Transferring the list of books read to the BookCardList*/}
                 <BookCardList books={readBooks}  ></BookCardList> {}
             </div>
         </>

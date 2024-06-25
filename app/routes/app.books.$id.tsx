@@ -4,15 +4,15 @@ import { useEffect, useState } from 'react';
 import { useParams, Link } from '@remix-run/react';
 import { fetchBookById } from '~/apis/book-api';
 import { Book, Comment } from '~/models/book';
-import { addCommentToBook } from '~/storage.server/book-storage';
-import { RootState } from '~/store.client/store';
 import { RiStarSLine } from "react-icons/ri";
 import { IoStarSharp } from "react-icons/io5";
+import {useAppSelector} from "~/store.client/store";
 
 export default function BookDetailPage() {
     const { id } = useParams<{ id: string }>();
     const [bookDetails, setBookDetails] = useState<Book | null>(null);
     const [loading, setLoading] = useState(true);
+    const currentTheme = useAppSelector((state) => state.theme.theme);
 
     // useEffect Hook to retrieve the book details when the ID is changed
     useEffect(() => {
@@ -45,13 +45,15 @@ export default function BookDetailPage() {
     const emptyStars = totalStars - filledStars;
 
     return (
+
+        <>
         <div>
             <h1>{bookDetails.title}</h1>
             <p className="my-2">Author: {bookDetails.author}</p>
             <img  className="rounded-lg" src={bookDetails.coverUrl} alt={`Cover of ${bookDetails.title}`} />
             <div className="flex pt-5">
-                {Array(filledStars).fill(<IoStarSharp key="filled-star" />)} //Array with length filledStars
-                {Array(emptyStars).fill(<RiStarSLine key="empty-star" />)}
+                {Array(filledStars).fill(<IoStarSharp />)} {/*//Array with length filledStars*/}
+                {Array(emptyStars).fill(<RiStarSLine />)}
             </div>
             <p className="pb-5 text-xs">({bookDetails.starRating}/5)</p>
 
@@ -61,7 +63,7 @@ export default function BookDetailPage() {
                     <h2>Comments</h2>
                     <ul>
                         {bookDetails.comments.map((comment: Comment) => (
-                            <li key={comment.commentId} className="bg-[#FAF8F4] rounded-lg mt-3 p-2">
+                            <li key={comment.commentId} className={`bg-[#FAF8F4] rounded-lg mt-3 p-2 ${currentTheme === 'dark' ? 'bg-gray-700' : ''}`}>
                                 <p>{comment.text}</p>
                                 <small>{new Date(comment.createdAt).toLocaleString()}</small>
                             </li>
@@ -73,5 +75,6 @@ export default function BookDetailPage() {
             )}
             <Link to="/app" className="rounded-lg bg-[#8290B6] text-[#fff] p-1 hover:bg-[#98A5C8] ">Back to Book Library</Link>
         </div>
+        </>
     );
 }

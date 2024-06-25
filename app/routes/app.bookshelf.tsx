@@ -14,7 +14,7 @@ export default function Bookshelf() {
             <p className="text-muted-foreground text-sm">Explore all the books you've been eager to read. Build your personal bookshelf with the stories that captivate you the most. Happy reading!</p>
 
             <div className="mt-5">
-                // Transferring the list of favorite books to the BookCardList
+                {/*// Transferring the list of favorite books to the BookCardList*/}
                 <BookCardList books={favoriteBooks}></BookCardList> {}
             </div>
         </>

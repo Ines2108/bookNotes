@@ -7,22 +7,21 @@ type ReadState = {
     readBooks: Book[];
 };
 
-export const readAction = createAction<{ book: Book }>('read/read'); // Action to add a book to readBooks
-export const notReadAction = createAction<{ bookId: string }>('read/notRead'); // Action to remove a book from readBooks
+export const readAction = createAction<{ book: Book }>('read/read');
+export const notReadAction = createAction<{ bookId: string }>('read/notRead');
 
 const initialState: ReadState = {
     readBooks: loadReadBooksFromLocalStorage(),
 };
 
-// Remove and add to readBooks array
 const readReducer = createReducer(initialState, (builder) => {
     builder.addCase(readAction, (state, action) => {
-        state.readBooks.push(action.payload.book); // Push the read book to the readBook array
+        state.readBooks.push(action.payload.book);
         saveReadBooksToLocalStorage(state.readBooks);
     });
 
     builder.addCase(notReadAction, (state, action) => {
-        state.readBooks = state.readBooks.filter(book => book.id !== action.payload.bookId); // Remove the read book from the array
+        state.readBooks = state.readBooks.filter(book => book.id !== action.payload.bookId);
         saveReadBooksToLocalStorage(state.readBooks);
     });
 });
