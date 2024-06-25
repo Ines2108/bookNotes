@@ -1,5 +1,6 @@
 // localStorage.ts
 import { Book } from '~/models/book';
+import { Theme } from '~/store.client/theme-reducer';
 
 // Favoriten-Funktionen
 export const loadFavoritesFromLocalStorage = (): Book[] => {
@@ -18,14 +19,6 @@ export const saveFavoritesToLocalStorage = (favorites: Book[]) => {
     }
 };
 
-export const deleteFavoritesFromLocalStorage = async (id: string) => {
-    if (typeof window !== 'undefined') {
-        let favorites = loadFavoritesFromLocalStorage();
-        favorites = favorites.filter(book => book.id !== id);
-        localStorage.setItem('favorites', JSON.stringify(favorites));
-    }
-};
-
 // Gelesene Bücher-Funktionen
 export const loadReadBooksFromLocalStorage = (): Book[] => {
     if (typeof window !== 'undefined') {
@@ -40,5 +33,21 @@ export const loadReadBooksFromLocalStorage = (): Book[] => {
 export const saveReadBooksToLocalStorage = (readBooks: Book[]) => {
     if (typeof window !== 'undefined') {
         localStorage.setItem('readBooks', JSON.stringify(readBooks));
+    }
+};
+
+export const loadThemeFromLocalStorage = (): Theme | null => {
+    if (typeof window !== 'undefined') {
+        const themeJson = localStorage.getItem('theme');
+        if (themeJson) {
+            return JSON.parse(themeJson);
+        }
+    }
+    return null;
+};
+
+export const saveThemeToLocalStorage = (theme: Theme) => {
+    if (typeof window !== 'undefined') {
+        localStorage.setItem('theme', JSON.stringify(theme));
     }
 };

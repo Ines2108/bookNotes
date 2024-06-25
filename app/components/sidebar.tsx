@@ -13,6 +13,7 @@ import { Link } from '@remix-run/react';
 import Bookshelf from "~/routes/app.bookshelf";
 
 export function Sidebar() {
+
   return (
     <div className="sidebar">
       <section>

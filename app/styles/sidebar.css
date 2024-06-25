@@ -9,6 +9,11 @@
   background-color: #FDFCFB;
 }
 
+.dark .sidebar {
+  background-color: hsl(var(--card));
+  color: hsl(var(--card-foreground));
+}
+
 .sidebar_link {
   display: flex;
   padding: 0.5rem 1rem;

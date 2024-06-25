@@ -25,3 +25,7 @@
     max-height: 100%;
   }
 }
+
+.dark .icon-button {
+  background-color: #3D4253;
+}
