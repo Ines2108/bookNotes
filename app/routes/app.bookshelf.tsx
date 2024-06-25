@@ -6,15 +6,16 @@ import { useAppSelector } from '~/store.client/store';
 
 
 export default function Bookshelf() {
-    const favoriteBooks = useAppSelector((state) => state.favorite.favoriteBooks); // Abrufen der Liste der favorisierten Bücher aus dem Redux-Store
+    const favoriteBooks = useAppSelector((state) => state.favorite.favoriteBooks); // Retrieve the list of favorite books from the Store
 
     return (
         <>
             <h1>Personal Bookshelf</h1>
-            <p className="text-muted-foreground text-sm">All the books you want to read</p>
+            <p className="text-muted-foreground text-sm">Explore all the books you've been eager to read. Build your personal bookshelf with the stories that captivate you the most. Happy reading!</p>
 
             <div className="mt-5">
-                <BookCardList books={favoriteBooks}></BookCardList> {/* Übergeben der Liste der favorisierten Bücher an die BookCardList */}
+                // Transferring the list of favorite books to the BookCardList
+                <BookCardList books={favoriteBooks}></BookCardList> {}
             </div>
         </>
     );

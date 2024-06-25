@@ -7,7 +7,7 @@ const ThemeSwitch: React.FC = () => {
     const dispatch = useAppDispatch();
     const currentTheme = useAppSelector((state) => state.theme.theme);
 
-    const handleThemeChange = () => {
+    const handleThemeChange = () => {  // Function to handle dark mode toggle
         const newTheme = currentTheme === 'light' ? 'dark' : 'light';
         dispatch(setThemeAction(newTheme));
     };

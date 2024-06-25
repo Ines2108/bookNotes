@@ -1,7 +1,7 @@
 import { LoaderFunctionArgs } from '@remix-run/node';
 import { useLoaderData } from '@remix-run/react';
-import { fetchBooks } from '~/apis/book-api'; // Annahme: Du hast eine Funktion fetchBooks, um Bücher abzurufen
-import { BookCardList } from '~/components/book-card-list'; // Annahme: Du hast ein Component BookCardList, um Bücher anzuzeigen
+import { fetchBooks } from '~/apis/book-api';
+import { BookCardList } from '~/components/book-card-list';
 
 export async function loader({ request }: LoaderFunctionArgs) {
     const books = await fetchBooks();
@@ -15,7 +15,7 @@ export default function Library() {
     return (
         <>
             <h1>Book Library</h1>
-            <p className="text-muted-foreground text-sm">Your Books. Your library.</p>
+            <p className="text-muted-foreground text-sm mb-2">Below, you can discover amazing books ranging from magic and fairies to programming and beyond. Dive into captivating worlds by saving the most intriguing books to your personal bookshelf today!</p>
 
             <BookCardList books={books}></BookCardList>
         </>

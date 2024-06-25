@@ -1,5 +1,5 @@
-import { Book } from '~/models/book'; // Annahme: Du hast ein Book-Modell definiert
-import { BookCard } from './book-card'; // Annahme: Du hast ein BookCard-Component
+import { Book } from '~/models/book';
+import { BookCard } from './book-card';
 
 type BookCardListProps = {
     books: Book[]

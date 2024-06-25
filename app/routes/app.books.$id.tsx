@@ -14,6 +14,7 @@ export default function BookDetailPage() {
     const [bookDetails, setBookDetails] = useState<Book | null>(null);
     const [loading, setLoading] = useState(true);
 
+    // useEffect Hook to retrieve the book details when the ID is changed
     useEffect(() => {
         if (id) {
             fetchBookById(id)
@@ -29,7 +30,7 @@ export default function BookDetailPage() {
     }, [id]);
 
     if (loading) {
-        return <div>Loading...</div>;
+        return <div>Loading 📖...</div>;
     }
 
     if (!bookDetails) {
@@ -39,7 +40,7 @@ export default function BookDetailPage() {
     const starRating = bookDetails.starRating;
     const totalStars = 5;
 
-    // Berechne die Anzahl der gefüllten Sterne und die Anzahl der leeren Sterne
+    // Calculates the number of filled stars and empty stars
     const filledStars = Math.floor(starRating);
     const emptyStars = totalStars - filledStars;
 
@@ -49,7 +50,7 @@ export default function BookDetailPage() {
             <p className="my-2">Author: {bookDetails.author}</p>
             <img  className="rounded-lg" src={bookDetails.coverUrl} alt={`Cover of ${bookDetails.title}`} />
             <div className="flex pt-5">
-                {Array(filledStars).fill(<IoStarSharp key="filled-star" />)}
+                {Array(filledStars).fill(<IoStarSharp key="filled-star" />)} //Array with length filledStars
                 {Array(emptyStars).fill(<RiStarSLine key="empty-star" />)}
             </div>
             <p className="pb-5 text-xs">({bookDetails.starRating}/5)</p>

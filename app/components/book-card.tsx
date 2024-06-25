@@ -9,22 +9,26 @@ import { FaRegHeart, FaHeart} from "react-icons/fa";
 import { FaBookOpen } from "react-icons/fa6";
 import { HiOutlineBookOpen } from "react-icons/hi";
 
+// Definieren der Props für die BookCard Komponente
 type BookCardProps = { book: Book };
 
 export function BookCard({ book }: BookCardProps) {
-    const dispatch = useAppDispatch();
+    const dispatch = useAppDispatch(); //custom hook to change state
+    // Retrieve favorite books from the Redux store
     const favoriteBooks = useAppSelector((state) => state.favorite.favoriteBooks);
-    const isFavorite = favoriteBooks.some(favoriteBook => favoriteBook.id === book.id);
+    const isFavorite = favoriteBooks.some(favoriteBook => favoriteBook.id === book.id);  // Check if the current book is a favorite
 
-    // Mark books as read
+    // Retrieve read books from the Redux store
     const readBooks = useAppSelector((state) => state.read.readBooks);
-    const isRead = readBooks.some(readBook => readBook.id === book.id);
+    const isRead = readBooks.some(readBook => readBook.id === book.id);  // Check if the current book is read
 
+
+    // Function to handle favorite button click
     const onFavoriteButtonClicked = () => {
         dispatch(isFavorite ? notFavAction({ bookId: book.id }) : favAction({ book }));
     };
 
-    // Mark books as read
+    // Function to handle read button click
     const onReadButtonClicked = () => {
         dispatch(isRead ? notReadAction({ bookId: book.id }) : readAction({ book }));
     };
@@ -63,6 +67,7 @@ export function BookCard({ book }: BookCardProps) {
 }
 
 type FavoriteButtonProps = { isFavorite: boolean; onClick?: () => void };
+// The FavoriteButton component
 function FavoriteButton({ isFavorite = false, onClick }: FavoriteButtonProps) {
     return (
         <button type="button" className="icon-button" onClick={onClick}>
@@ -71,8 +76,9 @@ function FavoriteButton({ isFavorite = false, onClick }: FavoriteButtonProps) {
     );
 }
 
-// Mark as read
+
 type ReadButtonProps = { isRead: boolean; onClick?: () => void };
+// The ReadButton component
 function ReadButton({ isRead = false, onClick }: ReadButtonProps) {
     return (
         <button type="button" className="icon-button" onClick={onClick}>

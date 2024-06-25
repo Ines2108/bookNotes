@@ -4,6 +4,7 @@ import favoriteReducer from "~/store.client/favorite-reducer";
 import readReducer from "~/store.client/read-reducer";
 import themeReducer from "~/store.client/theme-reducer";
 
+// Configure Reducer to manage the states
 export const store = configureStore({
   reducer: {
     favorite: favoriteReducer,
@@ -12,11 +13,11 @@ export const store = configureStore({
   },
 });
 
-// Infer the `RootState` and `AppDispatch` types from the store itself
 export type RootState = ReturnType<typeof store.getState>;
-// Inferred type: {posts: PostsState, comments: CommentsState, users: UsersState}
 export type AppDispatch = typeof store.dispatch;
-export const useAppDispatch = useDispatch.withTypes<AppDispatch>(); // Export a hook that can be reused to resolve types
-export const useAppSelector = useSelector.withTypes<RootState>(); // Export a hook that can be reused to resolve types
+
+// Export custom hooks to use the dispatch and select function with the correct types
+export const useAppDispatch = useDispatch.withTypes<AppDispatch>(); //custom hook to change the state of the store
+export const useAppSelector = useSelector.withTypes<RootState>(); //custom hook to select the state of the store
 
 export default store;

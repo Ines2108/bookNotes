@@ -33,11 +33,10 @@ export function Layout({ children }: { children: React.ReactNode }) {
     );
 }
 
-// This is the base layout, feel free to adapt
 export default function App() {
     const theme = useAppSelector((state) => state.theme.theme);
 
-    useEffect(() => {
+    useEffect(() => { //dark mode
         const root = document.documentElement;
         root.classList.toggle('dark', theme === 'dark');
     }, [theme]);

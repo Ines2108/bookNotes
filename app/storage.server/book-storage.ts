@@ -7,24 +7,24 @@ import { Comment } from '~/models/book';
 const bookStorage = createFeatureStorage<Book>('book');
 
 
-// Alle Bücher abrufen
+//  Retrieve all books
 export const getAllBooks = () => {
   return bookStorage.getAll();
 };
 
-// Ein Buch anhand der ID abrufen
+// Retrieve book with ID
 export const getBookById = (id: string) => {
   return bookStorage.getById(id);
 };
 
 
-// Ein Buch aktualisieren
+// Update a book
 export const updateBook = async (id: string, book: Partial<Book>) => {
   return bookStorage.update({ id: id, ...book });
 };
 
 
-// Einen Kommentar zu einem Buch hinzufügen
+// Add Comments to book
 export const addCommentToBook = async (bookId: string, commentText: string): Promise<Book> => {
   const book = await getBookById(bookId);
   if (!book) {
