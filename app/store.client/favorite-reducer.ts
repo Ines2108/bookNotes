@@ -5,6 +5,7 @@ import { loadFavoritesFromLocalStorage, saveFavoritesToLocalStorage } from '~/st
 
 type FavoriteState = {
     favoriteBooks: Book[];
+
 };
 
 export const favAction = createAction<{ book: Book }>('favorites/fav');
@@ -25,5 +26,7 @@ const favoriteReducer = createReducer(initialState, (builder) => {
         saveFavoritesToLocalStorage(state.favoriteBooks);
     });
 });
+
+
 
 export default favoriteReducer;

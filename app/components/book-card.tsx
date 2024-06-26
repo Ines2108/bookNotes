@@ -17,7 +17,6 @@ export function BookCard({ book }: BookCardProps) {
     // Retrieve favorite books from the Redux store
     const favoriteBooks = useAppSelector((state) => state.favorite.favoriteBooks);
     const isFavorite = favoriteBooks.some(favoriteBook => favoriteBook.id === book.id);  // Check if the current book is a favorite
-
     // Retrieve read books from the Redux store
     const readBooks = useAppSelector((state) => state.read.readBooks);
     const isRead = readBooks.some(readBook => readBook.id === book.id);  // Check if the current book is read

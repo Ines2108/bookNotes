@@ -6,6 +6,7 @@ export const loadFavoritesFromLocalStorage = (): Book[] => {
     if (typeof window !== 'undefined') {
         const favoriteJson = localStorage.getItem('favorites');
         if (favoriteJson) {
+            console.log(favoriteJson);
             return JSON.parse(favoriteJson);
         }
     }
@@ -19,6 +20,9 @@ export const saveFavoritesToLocalStorage = (favorites: Book[]) => {
     }
 };
 
+
+
+
 // Function to load read books from LocalStorage
 export const loadReadBooksFromLocalStorage = (): Book[] => {
     if (typeof window !== 'undefined') {
@@ -29,6 +33,8 @@ export const loadReadBooksFromLocalStorage = (): Book[] => {
     }
     return [];
 };
+
+
 
 // Function to save read books to LocalStorage
 export const saveReadBooksToLocalStorage = (readBooks: Book[]) => {
